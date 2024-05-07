@@ -1,0 +1,12 @@
+#spring:
+#  data:
+#    mongodb:
+#      host: localhost
+#      port: 27017
+#      database: chat2
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/chat2
+      auto-index-creation: true
