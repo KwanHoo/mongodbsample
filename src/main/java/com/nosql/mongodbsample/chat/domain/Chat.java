@@ -13,16 +13,18 @@ import lombok.Getter;
 public class Chat {
 	@Id
 	private String id;
+	private String roomId;			//
 	private String msg;
 	private String sender;
-	private String receiver;
+	private String receiver;		// 카카오톡 답글, 멘션 같은 부분에 사용될 수 있음
 	private LocalDateTime createdAt;
 
 	@Builder
-	public Chat(String msg, String sender, String receiver) {
+	public Chat(String msg, String sender, String roomId) {
 		this.msg = msg;
 		this.sender = sender;
-		this.receiver = receiver;
+		// this.receiver = receiver;
+		this.roomId = roomId;
 		this.createdAt = LocalDateTime.now();
 	}
 }

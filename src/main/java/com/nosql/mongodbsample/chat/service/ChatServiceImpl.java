@@ -21,7 +21,8 @@ public class ChatServiceImpl implements ChatService{
 		return chatRepository.save(Chat.builder()
 			.msg(chatVo.getMsg())
 			.sender(chatVo.getSender())
-			.receiver(chatVo.getReceiver())
+			.roomId(chatVo.getRoomId())
+			// .receiver(chatVo.getReceiver())
 				// .createdAt(chatVo)
 			.build());
 	}
@@ -29,5 +30,10 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public Flux<Chat> getChat(String sender, String receiver) {
 		return chatRepository.findChatBySenderAndReceiver(sender, receiver);
+	}
+
+	@Override
+	public Flux<Chat> getChatByRoomId(String roomId) {
+		return chatRepository.findChatByRoomId(roomId);
 	}
 }

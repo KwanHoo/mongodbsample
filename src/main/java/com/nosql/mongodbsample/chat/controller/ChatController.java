@@ -1,6 +1,7 @@
 package com.nosql.mongodbsample.chat.controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import reactor.core.scheduler.Schedulers;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/chat")
+@CrossOrigin(origins = "*")
 public class ChatController {
 	private final ChatService chatService;
 
@@ -30,6 +32,13 @@ public class ChatController {
 	){
 		return chatService.getChat(sender, receiver)
 			.subscribeOn(Schedulers.boundedElastic());
+	}
+
+	@GetMapping(value = "/room/{roomId}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public Flux<Chat> getChatByRoomId(
+		@PathVariable(value ="roomId") String roomId
+	){
+		return chatService.getChatByRoomId(roomId).subscribeOn(Schedulers.boundedElastic());
 	}
 
 	@PostMapping

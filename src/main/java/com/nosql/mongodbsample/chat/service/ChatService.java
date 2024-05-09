@@ -11,4 +11,6 @@ public interface ChatService {
 	Mono<Chat> sendChat(ChatVo chatVo);
 
 	Flux<Chat> getChat(String sender, String receiver);
+
+	Flux<Chat> getChatByRoomId(String roomId);
 }

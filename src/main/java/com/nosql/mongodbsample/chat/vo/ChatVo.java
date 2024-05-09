@@ -9,6 +9,6 @@ public class ChatVo {
 
 	private String msg;
 	private String sender;
-	private String receiver;
-
+	// private String receiver;
+	private String roomId;
 }
